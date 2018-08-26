@@ -54,8 +54,12 @@ def test_can_apply_discount_rule(checkout):
     checkout.add_item("watermelon")
     assert checkout.calc_total() == 2
 
+# sixth test
 def test_incorrect_item_exception(checkout):
     with pytest.raises(Exception):
         checkout.add_item("c")
+
+
+### End of Assignment
 
 
