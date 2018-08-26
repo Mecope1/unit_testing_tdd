@@ -46,7 +46,7 @@ def test_can_add_discount_rule(checkout):
 
 
 # Use of pytest.mark.skip forces pytest to ignore this test.
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_can_apply_discount_rule(checkout):
     checkout.add_discount_rule("watermelon", 3, 2)
     checkout.add_item("watermelon")

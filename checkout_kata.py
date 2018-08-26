@@ -25,17 +25,28 @@ class checkout_kata:
 
     def calc_total(self):
         total = 0
-        for item, cnt in self.items.items():
-            if item in self.discounts:
-                discount = self.discounts[item]
-                if cnt >= discount.nmbr_items:
-                    nmbr_of_discounts = cnt/ discount.nmbr_items
-                    total += nmbr_of_discounts * discount.price
-                    remaining = cnt % discount.nmbr_items
-                    total += remaining * self.prices[item]
-                else:
-                    total += self.prices[item] * cnt
-            total += self.prices[item] * cnt
+        for item, count in self.items.items():
+            total += self.calc_item_total(item, count)
         return total
 
+    def calc_item_total(self, item, count):
+        total = 0
+        if item in self.discounts:
+            discount = self.discounts[item]
+            if count >= discount.nmbr_items:
+                total += self.calc_item_disc_total(item, count, discount)
+            else:
+                total += self.prices[item] * count
+        else:
+            total += self.prices[item] * count
+
+        return total
+
+    def calc_item_disc_total(self, item, count, discount):
+        total = 0
+        nmbr_discounts = count / discount.nmbr_items
+        total += nmbr_discounts * discount.price
+        remaining = count % discount.nmbr_items
+        total += remaining * self.prices[item]
+        return total
 
