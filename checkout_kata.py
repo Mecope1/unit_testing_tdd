@@ -11,3 +11,6 @@ class checkout_kata:
 
     def calc_total(self):
         return self.total
+
+    def add_discount(self, nmbr_items, amount, disc_price):
+        pass
