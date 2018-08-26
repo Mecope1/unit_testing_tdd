@@ -1,3 +1,5 @@
 
 def file_reader(filename):
-    pass
+    infile = open(filename, "r")
+    line = infile.readline()
+    return line
