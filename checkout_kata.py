@@ -1,4 +1,5 @@
 class checkout_kata:
+
     def __init__(self):
         self.prices = {}
         self.total = 0
@@ -12,5 +13,5 @@ class checkout_kata:
     def calc_total(self):
         return self.total
 
-    def add_discount(self, nmbr_items, amount, disc_price):
+    def add_discount_rule(self, nmbr_items, amount, disc_price):
         pass

@@ -6,6 +6,7 @@ from checkout_kata import checkout_kata
 # def test_checkout_kata():
 #    co = checkout_kata()
 
+
 @pytest.fixture()
 def checkout():
 
@@ -13,7 +14,6 @@ def checkout():
     checkout.add_item_price("watermelon", 1)
     checkout.add_item_price("radish", 2)
 # Item prices exist in several tests so they are moved into the fixture to reduce clutter and redundant code.
-
 
     return checkout
 
@@ -32,6 +32,7 @@ def checkout():
 def test_can_calc_total(checkout):
     checkout.add_item("watermelon")
     assert checkout.calc_total() == 1
+
 
 # Fifth test.
 def test_multiple_items_total(checkout):
