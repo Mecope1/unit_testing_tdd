@@ -14,10 +14,11 @@ from line_reader import file_reader
 @pytest.fixture()
 def mock_open(monkeypatch):
     mock_file = MagicMock()
-    mock_file.readline = MagicMock(return_value="test_line")
+    mock_file.readline = MagicMock( return_value="test_line")
     mock_open = MagicMock(return_value=mock_file)
     monkeypatch.setattr("builtins.open", mock_open)
     return mock_open
+
 
 # Second test.
 def test_returns_correct_string(mock_open, monkeypatch):
@@ -27,12 +28,20 @@ def test_returns_correct_string(mock_open, monkeypatch):
     mock_open.assert_called_once_with("fake_name", "r")
     assert result == "test_line"
 
+
 # Third test.
 def test_bad_file_exception(mock_open, monkeypatch):
     mock_exists = MagicMock(return_value=False)
     monkeypatch.setattr("os.path.exists", mock_exists)
     with raises(Exception):
         result = file_reader("fake_name")
+
+# Fourth test.
+def test_can_read_line(mock_open):
+    mock_open.mock_file.readline = MagicMock(return_value=False)
+    with raises(Exception):
+        result = file_reader("fake_name")
+
 
 
 
