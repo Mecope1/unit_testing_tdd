@@ -1,3 +1,4 @@
+import os
 
 def file_reader(filename):
     infile = open(filename, "r")
