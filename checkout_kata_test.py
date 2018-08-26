@@ -11,10 +11,10 @@ from checkout_kata import checkout_kata
 def checkout():
 
     checkout = checkout_kata()
+
+# Item prices exist in several tests so they are moved into the fixture to reduce clutter and redundant code.
     checkout.add_item_price("watermelon", 1)
     checkout.add_item_price("radish", 2)
-# Item prices exist in several tests so they are moved into the fixture to reduce clutter and redundant code.
-
     return checkout
 
 
@@ -45,6 +45,8 @@ def test_can_add_discount_rule(checkout):
     checkout.add_discount_rule("watermelon", 3, 2)
 
 
+# Use of pytest.mark.skip forces pytest to ignore this test.
+@pytest.mark.skip
 def test_can_apply_discount_rule(checkout):
     checkout.add_discount_rule("watermelon", 3, 2)
     checkout.add_item("watermelon")
