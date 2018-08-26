@@ -16,6 +16,8 @@ def test_returns_correct_string(monkeypatch):
     mock_file.readline = MagicMock(return_value="test_line")
     mock_open = MagicMock(return_value=mock_file)
     monkeypatch.setattr("builtins.open", mock_open)
+    mock_exists = MagicMock(return_value=True)
+    monkeypatch.setattr("os.path.exists", mock_exists)
     result = file_reader("fake_name")
     mock_open.assert_called_once_with("fake_name", "r")
     assert result == "test_line"
